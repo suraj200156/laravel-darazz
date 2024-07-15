@@ -7,9 +7,9 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    public function index(){
-        $review = Review::get();
-        dd('review');
-        dd($review);
-    } 
+    public function index()
+    {
+        $reviews = Review::get();
+        return view('Review/review', compact('reviews'));
+    }
 }

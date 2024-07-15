@@ -7,9 +7,9 @@ use App\Models\OrderItem;
 
 class OrderItemController extends Controller
 {
-    public function index(){
-        $orderItem = OrderItem::get();
-        dd('Cart');
-        dd($orderItem);
-    } 
+    public function index()
+    {
+        $orderItems = OrderItem::get();
+        return view('OrderItem/orderItem', compact('orderItems'));
+    }
 }

@@ -7,9 +7,9 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function index(){
-        $cart = Cart::get();
-        dd('Cart');
-        dd($cart);
-    } 
+    public function index()
+    {
+        $carts = Cart::get();
+        return view('Cart/cart', compact('carts'));
+    }
 }

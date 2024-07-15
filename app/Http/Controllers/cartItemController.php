@@ -7,9 +7,9 @@ use App\Models\CartItem;
 
 class cartItemController extends Controller
 {
-    public function index(){
-        $cartItem = CartItem::get();
-        dd('CartItem');
-        dd($cartItem);
-    } 
+    public function index()
+    {
+        $cartItems = CartItem::get();
+        return view('CartItem/cartItem', compact('cartItems'));
+    }
 }

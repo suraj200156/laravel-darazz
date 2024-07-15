@@ -7,9 +7,9 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function index(){
-        $order = Order::get();
-        dd('Cart');
-        dd($order);
-    } 
+    public function index()
+    {
+        $orders = Order::get();
+        return view('Order/order', compact('orders'));
+    }
 }

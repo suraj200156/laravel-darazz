@@ -74,7 +74,7 @@
 </head>
 
 <body>
-    @foreach ($products as $product)
+    <!-- @foreach ($products as $product) -->
     <div class="product">
         <img src="{{ asset('images/iPhone 15 Pro.JPEG') }}" alt="Description">
         <div class="product_info">
@@ -87,7 +87,7 @@
             <p class="product-price">RS: {{ $product->price }}
             </p>
         </div>
-        @endforeach
+        <!-- @endforeach -->
 </body>
 
 </html>

@@ -8,13 +8,12 @@ use App\Models\Category;
 
 class CategoriesSeeders extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $category = new Category;
-        $category-> name = "Laptop";
-        $category->save();
+        for ($i = 1; $i <= 10; $i++) {
+            $category = new Category;
+            $category->name = "Laptop " . $i;
+            $category->save();
+        }
     }
 }
