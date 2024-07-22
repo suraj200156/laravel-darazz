@@ -27,6 +27,7 @@
             <td>{{$orderItem->product_id}}</td>
             <td>{{$orderItem->quantity}}</td>
             <td>{{$orderItem->price}}</td>
+            
         </tr>
         @endforeach
     </table>
