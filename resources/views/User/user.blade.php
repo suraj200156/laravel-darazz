@@ -23,8 +23,10 @@
             <th>phone_number</th>
             <th>address</th>
             <th>user_type</th>
+            <th>password</th>
             <th>use_image_url</th>
         </tr>
+
 
         @foreach($users as $user)
         <tr>
@@ -37,6 +39,7 @@
             <td>{{$user->phone_number}}</td>
             <td>{{$user->address}}</td>
             <td>{{$user->user_type}}</td>
+            <td>{{$user->password}}</td>
             <td>{{$user->use_image_url}}</td>
         </tr>
 

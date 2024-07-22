@@ -8,13 +8,12 @@ use App\Models\Cart;
 
 class CartSeeders extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $cart = new Cart;
-        $cart-> user_id	 = 1;
-        $cart->save();
+        for ($i = 1; $i <= 9; $i++) {
+            $cart = new Cart;
+            $cart->user_id = 1 + $i;
+            $cart->save();
+        }
     }
 }

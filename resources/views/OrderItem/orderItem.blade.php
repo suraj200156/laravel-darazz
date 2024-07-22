@@ -10,27 +10,25 @@
 
 <body>
 
-    <h2>Order Item table</h2>
+    <h1>Order Item table</h1>
+
+    <h3>Order Id: {{$orders->id}}</h3>
+    <h3>User Name: {{$orders->user_name}}</h3>
+
 
     <table style="width:100%">
         <tr>
-            <th>id</th>
+            <th>product id</th>
             <th>quantity</th>
             <th>price</th>
-            <th>order_id</th>
-            <th>product_id</th>
         </tr>
-
-        @foreach($orderItems as $orderItem)
+        @foreach($orders->orderItems as $orderItem)
         <tr>
-            <td>{{$orderItem->id}}</td>
+            <td>{{$orderItem->product_id}}</td>
             <td>{{$orderItem->quantity}}</td>
             <td>{{$orderItem->price}}</td>
-            <td>{{$orderItem->order_id}}</td>
-            <td>{{$orderItem->product_id}}</td>
         </tr>
         @endforeach
-
     </table>
 
 </body>

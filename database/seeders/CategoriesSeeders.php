@@ -10,9 +10,11 @@ class CategoriesSeeders extends Seeder
 {
     public function run(): void
     {
-        for ($i = 1; $i <= 10; $i++) {
+        $categories = ['Smartphones', 'Laptops', 'Tablets', 'Cameras', 'Accessories', 'Televisions', 'Headphones', 'Wearables', 'Gaming Consoles', 'Speakers'];
+
+        foreach ($categories as $categoryName) {
             $category = new Category;
-            $category->name = "Laptop " . $i;
+            $category->name = $categoryName;
             $category->save();
         }
     }

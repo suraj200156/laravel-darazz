@@ -13,20 +13,15 @@ class ProductSeeders extends Seeder
      */
     public function run(): void
     {
-        $products = new Product;
-        
-        $products->name ='Iphone 15 pro max';
-        $products->price = 2000;
-        $products->stocks = 15;
-        $products->description = "hello my name is suraj gurung. I am 23 year old";
-        $products->category_id = 1;
-        $products->save();
+        for ($i = 1; $i <= 9; $i++) {
+            $product = new Product;
+
+            $product->name = "Iphone " . ($i + 10) . " Pro Max";
+            $product->price = 21402 * $i;
+            $product->stocks = 15;
+            $product->description = "Serious power. Serious value.";
+            $product->category_id = $i;
+            $product->save();
+        }
     }
 }
-
-
-
-
-
-
-

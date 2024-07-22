@@ -14,11 +14,13 @@ class CartItemSeeder extends Seeder
      */
     public function run(): void
     {
-        $cartitem = new CartItem;
+        for ($i = 1; $i <= 6; $i++) {
+            $cartitem = new CartItem;
 
-        $cartitem->quantity = 20;
-        $cartitem->cart_id = 1;
-        $cartitem->product_id = 1;
-        $cartitem->save();
+            $cartitem->quantity = 14 + $i;
+            $cartitem->cart_id = 1 + $i;
+            $cartitem->product_id = 2 + $i;
+            $cartitem->save();
+        }
     }
 }

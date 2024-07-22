@@ -13,9 +13,11 @@ class OrderSeeders extends Seeder
      */
     public function run(): void
     {
-        $Order = new Order;
-        $Order->user_id = 1;
-        $Order->total_amount = 2000.50;
-        $Order->save();
+        for ($i = 1; $i <= 9; $i++) {
+            $Order = new Order;
+            $Order->user_id = 1 + $i;
+            $Order->total_amount = 200.50  * $i;
+            $Order->save();
+        }
     }
 }

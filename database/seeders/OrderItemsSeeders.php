@@ -13,12 +13,15 @@ class OrderItemsSeeders extends Seeder
      */
     public function run(): void
     {
-        $orderItems = new OrderItem;
-        
-        $orderItems->quantity = 20;
-        $orderItems->price = 1500;
-        $orderItems->order_id = 1;
-        $orderItems->product_id = 1;
-        $orderItems->save();
+
+        for ($i = 1; $i <= 6; $i++) {
+            $orderItems = new OrderItem;
+
+            $orderItems->quantity = 20 + $i;
+            $orderItems->price = 1500 * $i;
+            $orderItems->order_id = $i;
+            $orderItems->product_id = 1 + $i;
+            $orderItems->save();
+        }
     }
 }
