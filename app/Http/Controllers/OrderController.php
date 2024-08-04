@@ -11,17 +11,16 @@ class OrderController extends Controller
     public function index()
 
     {
-        // $order = Order::with('orderItems')->where('user_id', 2)->first();
-        // return view('Order.order', compact('order'));
 
-        $order = Order::join('users', 'orders.user_id', 'users.id')->get();
-        return view('Order.order', compact('order'));
+        $orders = Order::join('users', 'orders.user_id', 'users.id')->with('orderItems')
+            ->select('orders.id as order_id', 'orders.*', 'users.name', 'users.use_image_url')->get();
+        return view('Order.order', compact('orders'));
     }
 
     public function view($id)
     {
-        $orders = Order::join('users', 'orders.user_id', 'users.id')->where('orders.id', $id)->with('orderItems')->first();
-        return view('OrderItem/orderItem', compact('orders'));
+        $orders = Order::where('orders.id', $id)->with('orderItems')->first();
+        return view('Order.view', compact('orders'));
     }
 }
 

@@ -1,85 +1,226 @@
 <!DOCTYPE html>
-<html>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0px;
-    }
+<html lang="en">
 
-    h2 {
-        color: #333;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title', 'Default Title')</title>
+    <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-    h4 {
-        color: #666;
-        margin: 5px 0;
-    }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+        .main-content {
+            margin-left: 256px;
+            flex: 1;
+        }
 
-    th,
-    td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+        .navbar {
+            width: calc(100% - 256px);
+            height: 60px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            left: 256px;
+            top: 0;
+            z-index: 1000;
+        }
 
-    th {
-        background-color: #f2f2f2;
-        color: black;
-    }
+        .navbar .title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
 
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
+        .navbar .right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: auto;
+        }
 
-    tr:hover {
-        background-color: #f1f1f1;
-    }
+        .navbar .notification {
+            font-size: 24px;
+            cursor: pointer;
+        }
 
-    th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        background-color: #4CAF50;
-        color: white;
-    }
+        .navbar .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-    .container {
-        padding-top: 100px;
-        margin: 20px;
-    }
-</style>
+        .content {
+            padding: 80px 20px 20px 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+            border-bottom: 1px solid #ddd;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .header .search {
+            margin-right: auto;
+            margin-left: 20px;
+        }
+
+        .header .search input {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        .header .add-user {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            background-color: #14867f;
+        }
+
+        .table-container {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border: none;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-name img {
+            width: 40px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .user-name {
+            display: flex;
+            align-items: center;
+        }
+
+        td.action a {
+            text-decoration: none;
+            color: #333;
+            font-size: 23px;
+            transition: color 0.3s;
+        }
+
+        td.action a .ph-pencil {
+            color: #4caf50;
+        }
+
+        td.action a .ph-trash {
+            color: #f44336;
+        }
+    </style>
+</head>
 
 <body>
-
-    @include('HeaderAndFooter/header')
-
     <div class="container">
-        <table>
-            <tr>
-                <th>Order Id</th>
-                <th>User name</th>
-                <th>order date</th>
-                <th>status</th>
-                <th>Action</th>
-            </tr>
+        @include('./Admin/sidebar')
+        <div class="main-content">
+            <div class="navbar">
+                <div class="title">User</div>
+                <div class="right">
+                    <i class="ph ph-bell notification"></i>
+                    <div class="user-image">
+                        <img src="{{ asset('images/user/suraj.jpg') }}" alt="Us Profile" class="profile-pic">
+                    </div>
+                </div>
+            </div>
+            <div class="content">
 
-            @foreach($order as $item)
-            <tr>
-                <td>{{$item->id}}</td>
-                <td>{{$item->user_name}}</td>
-                <td>{{$item->created_at}}</td>
-                <td>{{$item->status}}</td>
-                <td><a href="{{ route('orders.view', $item->id)}}" target="_blank">view</a></td>
-            </tr>
-            @endforeach
-        </table>
+
+                <div class="header">
+                    <div class="search">
+                        <input type="text" placeholder="Search products...">
+                    </div>
+                    <a class="add-user" href="{{ route('product.create')}}">Add Products</a>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Total Price</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($orders as $order)
+                            <tr>
+                                <td class="user-name">
+                                    <img src="{{ asset('images/user/' . $order->use_image_url) }}" alt="User Image" class="user-image">
+
+                                    {{ $order->name }}
+                                </td>
+                                <td>{{ $order->total_amount }}</td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>{{ $order->status }}</td>
+                                <td><a href="{{route('orders.view',$order->id)}}">View</a></td>
+
+                                @endforeach
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </div>
+        </div>
     </div>
-
 </body>
 
 </html>

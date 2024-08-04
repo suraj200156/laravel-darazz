@@ -11,11 +11,10 @@ class Order extends Model
 
     public function orderItems()
     {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(OrderItem::class)
+            ->select('order_items.*', 'products.name', 'products.product_image_url' ,'products.price as product_price' )
+            ->leftJoin('products', function ($join) {
+                $join->on('order_items.product_id', '=', 'products.id');
+            });
     }
 }

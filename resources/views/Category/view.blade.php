@@ -134,15 +134,29 @@
 
         .user-name img {
             width: 40px;
-            height: 40px;
+            height: auto;
             border-radius: 10px;
             margin-right: 10px;
-            border: 1px solid #ddd;
         }
 
         .user-name {
             display: flex;
             align-items: center;
+        }
+
+        td.action a {
+            text-decoration: none;
+            color: #333;
+            font-size: 23px;
+            transition: color 0.3s;
+        }
+
+        td.action a .ph-pencil {
+            color: #4caf50;
+        }
+
+        td.action a .ph-trash {
+            color: #f44336;
         }
     </style>
 </head>
@@ -152,11 +166,11 @@
         @include('./Admin/sidebar')
         <div class="main-content">
             <div class="navbar">
-                <div class="title"> Category</div>
+                <div class="title">User</div>
                 <div class="right">
                     <i class="ph ph-bell notification"></i>
                     <div class="user-image">
-                        <img src="{{ asset('images/user/suraj.jpg') }}" alt="User Profile" class="profile-pic">
+                        <img src="{{ asset('images/user/suraj.jpg') }}" alt="Us Profile" class="profile-pic">
                     </div>
                 </div>
             </div>
@@ -165,24 +179,35 @@
 
                 <div class="header">
                     <div class="search">
-                        <input type="text" placeholder="Search category...">
+                        <input type="text" placeholder="Search products...">
                     </div>
-                    <a class="add-user" href="{{ route('category.create')}}">Add Category</a>
+                    <a class="add-user" href="{{ route('product.create')}}">Add Products</a>
                 </div>
 
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Product Name</th>
+                                <th>stocks</th>
+                                <th>price</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $categorie)
+                            @foreach($categories->products as $product)
                             <tr>
-                                <td>{{ $categorie->name }}</td>
-                                <td><a href="{{ route('category.view', $categorie->id) }}">View</a></td>
+                                <td class="user-name">
+                                    <img src="{{ asset('images/products/' . $product->product_image_url) }}" alt="User Image" class="user-image">
+
+                                    {{ $product->name }}
+                                </td>
+                                <td>{{ $product->stocks }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td class="action">
+                                    <a href=""><i class="ph ph-pencil"></i></a>
+                                    <a href=""><i class="ph ph-trash"></i></a>
+                                </td>
                                 @endforeach
                             </tr>
                         </tbody>
